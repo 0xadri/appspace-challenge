@@ -2,9 +2,7 @@
 
 Pitch: Frontend technical challenge for AppSpace.
 
-### 🚀 [Try It Live](http://poster-it-app.s3-website.eu-north-1.amazonaws.com/) 🚀
-
-LINK HERE
+### 🚀 [Try It Live](TODO) 🚀
 
 # 🛠️ Tech Stack
 
@@ -22,13 +20,30 @@ LINK HERE
 
 ## Project Goals
 
-- Build a fun app that I would actually like to use myself
+- create an app connected to an external API and show results from it
 
-- Learn By Doing
+- build a single page application with your main known framework (React)
 
-- Dig into Tailwind to design a nice look and feel
+- Ricky & Morty API, to perform the challenge https://rickandmortyapi.com/documentation
 
 - Integrate with several 3rd party APIs
+
+## Functional Requirements
+
+- Screen 1: List View: Show list of items fetched from the API. Features: 1/ show some information (title
+  & image mandatory), 2/ order the items by (at least) Title, 3/ filter the items by some of the fields (select and/or checkbox and/or search)
+
+- Screen 2: Detail View: Show detailed info about selected element (from list view).
+
+## Non-Functional Requirements
+
+• Good practices
+• Avoiding the use of external components libraries
+• User interface
+• Mobile support
+• Performance (loading and rendering)
+• Semantic Commit messages that demonstrate the evolution of your code
+• Documentation or explanation of your decisions (feel free to include any notes on potential improvements or features you didn’t have time to implement)
 
 ## Project Mgmt
 
