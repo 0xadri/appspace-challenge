@@ -2,16 +2,17 @@
 
 ### ✅ DONE
 
-- todo
+- init repo
+- init README
+- init TASKS_LOG
 
 ### 🏗️ PROG
 
-- init repo
+- API Fetch
 
 ### 📋 MUST
 
 - Responsive UX: mobile first, tablet & desktop friendly
-- API Fetch
 - Update README with: correct .env instructions, link to app
 
 ### SHOULD
