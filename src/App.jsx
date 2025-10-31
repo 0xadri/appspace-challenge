@@ -5,14 +5,15 @@ import ListCharacters from "./ListCharacters";
 import DeetsCharacter from "./DeetsCharacter";
 
 function App() {
-  const sortAsc = "asc";
-  const sortDsc = "dsc";
+  const SORT_ASC = "asc";
+  const SORT_DESC = "dsc";
+  const NONE_SELECTED_ID = -1;
   const [fullList, setFullList] = useState([]); // All characters
   const [filteredList, setFilteredList] = useState([]); // Filtered characters
-  const [idSelectedItem, setIdSelectedItem] = useState(-1);
+  const [idSelectedItem, setIdSelectedItem] = useState(NONE_SELECTED_ID);
   const [selectedChar, setSelectedChar] = useState({}); // Selected character
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState(sortAsc);
+  const [sortOrder, setSortOrder] = useState(SORT_ASC);
   const [loadingList, setLoadingList] = useState(false);
   const [loadingCharacter, setLoadingCharacter] = useState(false);
   const [listError, setListError] = useState();
@@ -23,7 +24,7 @@ function App() {
       setLoadingList(true);
       setListError(undefined);
       try {
-        const res = await fetch("https://rickandmortyapi2.com/api/character");
+        const res = await fetch(import.meta.env.VITE_RICK_AND_MORTY_API_URL);
         const data = await res.json();
         setFullList(data.results);
         setFilteredList(data.results);
@@ -48,7 +49,7 @@ function App() {
 
     // Sort list
     tmpList.sort((a, b) => {
-      if (sortOrder === sortAsc) {
+      if (sortOrder === SORT_ASC) {
         return a.name.localeCompare(b.name);
       } else {
         return b.name.localeCompare(a.name);
@@ -63,9 +64,9 @@ function App() {
       setLoadingCharacter(true);
       setCharError(undefined);
       try {
-        const res = await fetch(
-          `https://rickandmortyapi.com/api/character/${idSelectedItem}`
-        );
+        const URL =
+          import.meta.env.VITE_RICK_AND_MORTY_API_URL + "/" + idSelectedItem;
+        const res = await fetch(URL);
         const data = await res.json();
         setSelectedChar(data);
       } catch (error) {
@@ -78,10 +79,10 @@ function App() {
   }, [idSelectedItem]);
 
   const toggleSortOrder = () => {
-    if (sortOrder === sortAsc) {
-      setSortOrder(sortDsc);
+    if (sortOrder === SORT_ASC) {
+      setSortOrder(SORT_DESC);
     } else {
-      setSortOrder(sortAsc);
+      setSortOrder(SORT_ASC);
     }
   };
 
@@ -97,7 +98,7 @@ function App() {
         Appspace Frontend Tech Challenge: Rick And Morty API
       </h1>
       <div className="container">
-        {idSelectedItem === -1 && (
+        {idSelectedItem === NONE_SELECTED_ID && (
           <>
             <h2>List Of Characters</h2>
             {listError && <span>Error: {listError.message}</span>}
@@ -122,7 +123,7 @@ function App() {
           </>
         )}
 
-        {idSelectedItem !== -1 && (
+        {idSelectedItem !== NONE_SELECTED_ID && (
           <DeetsCharacter
             character={selectedChar}
             setIdSelectedItem={setIdSelectedItem}

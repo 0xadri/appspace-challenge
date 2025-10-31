@@ -11,16 +11,17 @@
 - Basic Styling
 - List : Sort by title
 - Details: Show Deets for selected item
+- Error State
+- Loading State
+- .env with API URL
 
 ### 🏗️ PROG
 
-- Error State
-- Loading State
+- Responsive UX: mobile first, tablet & desktop friendly
 
 ### 📋 MUST
 
-- Responsive UX: mobile first, tablet & desktop friendly
-- Update README with: correct .env instructions, link to app
+- Update README with: correct .env instructions, link to live demo
 
 ### SHOULD
 
