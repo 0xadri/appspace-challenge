@@ -9,14 +9,16 @@
 - List Display
 - List : Dynamic Filtering
 - Basic Styling
+- List : Sort by title
+- Details: Show Deets for selected item
 
 ### 🏗️ PROG
 
-- List : Sort by title
+- Error State
+- Loading State
 
 ### 📋 MUST
 
-- Details: show detailed information about the selected element.
 - Responsive UX: mobile first, tablet & desktop friendly
 - Update README with: correct .env instructions, link to app
 

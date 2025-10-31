@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import FilterSort from "./FilterSort.jsx";
+import ListCharacters from "./ListCharacters";
+import DeetsCharacter from "./DeetsCharacter";
 
 function App() {
   const sortAsc = "asc";
   const sortDsc = "dsc";
   const [fullList, setFullList] = useState([]); // All characters
   const [filteredList, setFilteredList] = useState([]); // Filtered characters
+  const [idSelectedItem, setIdSelectedItem] = useState(-1);
+  const [selectedChar, setSelectedChar] = useState({}); // Selected character
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState(sortAsc);
   const [load, setLoading] = useState();
@@ -47,6 +52,17 @@ function App() {
     setFilteredList(tmpList);
   }, [searchTerm, sortOrder, fullList]);
 
+  useEffect(() => {
+    const initChar = async () => {
+      const res = await fetch(
+        `https://rickandmortyapi.com/api/character/${idSelectedItem}`
+      );
+      const data = await res.json();
+      setSelectedChar(data);
+    };
+    if (idSelectedItem !== -1) initChar();
+  }, [idSelectedItem]);
+
   const toggleSortOrder = () => {
     if (sortOrder === sortAsc) {
       setSortOrder(sortDsc);
@@ -66,42 +82,28 @@ function App() {
       <h1>Appspace - Frontend Technical Challenge</h1>
       <div className="container">
         <h2>Rick And Morty</h2>
-        <div className="filter-sort">
-          <input
-            type="text"
-            name="searchTerm"
-            id="searchTerm"
-            placeholder="Search by name..."
-            value={searchTerm}
-            onChange={handleChangeSearchTerm}
-            className="search-box"
+
+        {idSelectedItem === -1 && (
+          <>
+            <FilterSort
+              searchTerm={searchTerm}
+              handleChangeSearchTerm={handleChangeSearchTerm}
+              sortOrder={sortOrder}
+              toggleSortOrder={toggleSortOrder}
+            />
+            <ListCharacters
+              filteredList={filteredList}
+              setIdSelectedItem={setIdSelectedItem}
+            />
+          </>
+        )}
+
+        {idSelectedItem !== -1 && (
+          <DeetsCharacter
+            character={selectedChar}
+            setIdSelectedItem={setIdSelectedItem}
           />
-          <input
-            type="button"
-            value={sortOrder}
-            onClick={toggleSortOrder}
-            className="sorting-toggle-btn"
-          />
-        </div>
-        <ul className="list">
-          {filteredList &&
-            filteredList.map((item) => (
-              <li key={item.id} className="list-item">
-                <div className="wrap">
-                  <img
-                    className="img"
-                    src={item.image}
-                    alt={item.name}
-                    width={100}
-                  />
-                  <div className="name">{item.name}</div>
-                  <div className="species-gender">
-                    {item.species} {item.gender}
-                  </div>
-                </div>
-              </li>
-            ))}
-        </ul>
+        )}
       </div>
     </>
   );
