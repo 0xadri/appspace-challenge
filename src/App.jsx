@@ -87,7 +87,6 @@ function App() {
   };
 
   const handleChangeSearchTerm = (e) => {
-    // todo: debounce
     const term = e.target.value;
     setSearchTerm(term);
   };
@@ -100,7 +99,7 @@ function App() {
       <div className="container">
         {idSelectedItem === NONE_SELECTED_ID && (
           <>
-            <h2>List Of Characters</h2>
+            <h2 className="h2">List Of Characters</h2>
             {listError && <span>Error: {listError.message}</span>}
 
             {loadingList && <span>Loading list...</span>}

@@ -14,19 +14,25 @@
 - Error State
 - Loading State
 - .env with API URL
+- Update README with: correct .env instructions
+- Responsive UX: mobile first, tablet & desktop friendly
 
 ### 🏗️ PROG
 
-- Responsive UX: mobile first, tablet & desktop friendly
+- none
 
 ### 📋 MUST
 
-- Update README with: correct .env instructions, link to live demo
+- Update README with: link to live demo
 
 ### SHOULD
 
-- none
+- Remove filteredList state: replace by data derived on-the-fly from fullList
+- Use React DevTools Profiler to detect unnecessary renders
+- Use CSS modules or CSS-in-JS for scoping styles.
+- Avoid redundant re-renders with useCallback and useMemo
+- Semantic HTML, use <main>, <section>, <nav>, <header>, <footer>.
 
 ### COULD
 
-- none
+- Debounce user input, only nice-to-have since we cache the entire list, w

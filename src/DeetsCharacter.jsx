@@ -8,7 +8,7 @@ const DeetsCharacter = ({
 
   return (
     <>
-      <h2>Character Details</h2>
+      <h2 className="h2">Character Details</h2>
 
       {loadingCharacter && <span>Loading details...</span>}
 

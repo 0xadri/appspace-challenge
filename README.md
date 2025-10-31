@@ -16,7 +16,7 @@ Pitch: Frontend technical challenge for Appspace.
 
 3. `npm run dev`
 
-4. `.env` file expected to have 4 variables: `VITE_SPOTIFY_CLIENT_ID`, `VITE_SPOTIFY_CLIENT_SECRET`, `VITE_DISCOGS_CONSUMER_KEY`, `VITE_DISCOGS_CONSUMER_SECRET`. How to get them? Check out the docs of Spotify and Discogs.
+4. `.env` file expected to have 1 variable: `VITE_RICK_AND_MORTY_API_URL` with value `https://rickandmortyapi.com/api/character`
 
 ## Project Goals
 
@@ -51,6 +51,6 @@ Pitch: Frontend technical challenge for Appspace.
 
 - Documentation or explanation of your decisions (feel free to include any notes on potential improvements or features you didn’t have time to implement)
 
-## Project Mgmt
+## Project Mgmt and Potential Improvements
 
 [Tasks Tracker](./TASKS_LOG.md)
