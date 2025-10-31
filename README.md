@@ -1,6 +1,6 @@
 # AppSpace Challenge
 
-Pitch: Frontend technical challenge for AppSpace.
+Pitch: Frontend technical challenge for Appspace.
 
 ### 🚀 [Try It Live](TODO) 🚀
 
@@ -20,9 +20,9 @@ Pitch: Frontend technical challenge for AppSpace.
 
 ## Project Goals
 
-- create an app connected to an external API and show results from it
+- Create an app connected to an external API and show results from it
 
-- build a single page application with your main known framework (React)
+- Build a single page application with your main known framework (React)
 
 - Ricky & Morty API, to perform the challenge https://rickandmortyapi.com/documentation
 
@@ -37,13 +37,19 @@ Pitch: Frontend technical challenge for AppSpace.
 
 ## Non-Functional Requirements
 
-• Good practices
-• Avoiding the use of external components libraries
-• User interface
-• Mobile support
-• Performance (loading and rendering)
-• Semantic Commit messages that demonstrate the evolution of your code
-• Documentation or explanation of your decisions (feel free to include any notes on potential improvements or features you didn’t have time to implement)
+- Good practices
+
+- Avoiding the use of external components libraries
+
+- User interface
+
+- Mobile support
+
+- Performance (loading and rendering)
+
+- Semantic Commit messages that demonstrate the evolution of your code
+
+- Documentation or explanation of your decisions (feel free to include any notes on potential improvements or features you didn’t have time to implement)
 
 ## Project Mgmt
 
