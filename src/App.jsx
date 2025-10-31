@@ -13,19 +13,25 @@ function App() {
   const [selectedChar, setSelectedChar] = useState({}); // Selected character
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState(sortAsc);
-  const [load, setLoading] = useState();
-  const [error, setError] = useState();
-
-  const fetchData = async () => {
-    const res = await fetch("https://rickandmortyapi.com/api/character");
-    return await res.json();
-  };
+  const [loadingList, setLoadingList] = useState(false);
+  const [loadingCharacter, setLoadingCharacter] = useState(false);
+  const [listError, setListError] = useState();
+  const [charError, setCharError] = useState();
 
   useEffect(() => {
     const init = async () => {
-      const { results } = await fetchData();
-      setFullList(results);
-      setFilteredList(results);
+      setLoadingList(true);
+      setListError(undefined);
+      try {
+        const res = await fetch("https://rickandmortyapi2.com/api/character");
+        const data = await res.json();
+        setFullList(data.results);
+        setFilteredList(data.results);
+      } catch (error) {
+        setListError(error);
+      } finally {
+        setLoadingList(false);
+      }
     };
     init();
   }, []);
@@ -54,11 +60,19 @@ function App() {
 
   useEffect(() => {
     const initChar = async () => {
-      const res = await fetch(
-        `https://rickandmortyapi.com/api/character/${idSelectedItem}`
-      );
-      const data = await res.json();
-      setSelectedChar(data);
+      setLoadingCharacter(true);
+      setCharError(undefined);
+      try {
+        const res = await fetch(
+          `https://rickandmortyapi.com/api/character/${idSelectedItem}`
+        );
+        const data = await res.json();
+        setSelectedChar(data);
+      } catch (error) {
+        setCharError(error);
+      } finally {
+        setLoadingCharacter(false);
+      }
     };
     if (idSelectedItem !== -1) initChar();
   }, [idSelectedItem]);
@@ -79,22 +93,32 @@ function App() {
 
   return (
     <>
-      <h1>Appspace - Frontend Technical Challenge</h1>
+      <h1 className="h1">
+        Appspace Frontend Tech Challenge: Rick And Morty API
+      </h1>
       <div className="container">
-        <h2>Rick And Morty</h2>
-
         {idSelectedItem === -1 && (
           <>
-            <FilterSort
-              searchTerm={searchTerm}
-              handleChangeSearchTerm={handleChangeSearchTerm}
-              sortOrder={sortOrder}
-              toggleSortOrder={toggleSortOrder}
-            />
-            <ListCharacters
-              filteredList={filteredList}
-              setIdSelectedItem={setIdSelectedItem}
-            />
+            <h2>List Of Characters</h2>
+            {listError && <span>Error: {listError.message}</span>}
+
+            {loadingList && <span>Loading list...</span>}
+
+            {!listError && !loadingList && (
+              <FilterSort
+                searchTerm={searchTerm}
+                handleChangeSearchTerm={handleChangeSearchTerm}
+                sortOrder={sortOrder}
+                toggleSortOrder={toggleSortOrder}
+              />
+            )}
+
+            {!listError && !loadingList && (
+              <ListCharacters
+                filteredList={filteredList}
+                setIdSelectedItem={setIdSelectedItem}
+              />
+            )}
           </>
         )}
 
@@ -102,6 +126,8 @@ function App() {
           <DeetsCharacter
             character={selectedChar}
             setIdSelectedItem={setIdSelectedItem}
+            loadingCharacter={loadingCharacter}
+            charError={charError}
           />
         )}
       </div>
