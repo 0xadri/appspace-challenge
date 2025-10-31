@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [list, setList] = useState([]); // All characters
+  const sortAsc = "asc";
+  const sortDsc = "dsc";
+  const [fullList, setFullList] = useState([]); // All characters
   const [filteredList, setFilteredList] = useState([]); // Filtered characters
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState(sortAsc);
   const [load, setLoading] = useState();
   const [error, setError] = useState();
 
@@ -16,20 +19,46 @@ function App() {
   useEffect(() => {
     const init = async () => {
       const { results } = await fetchData();
-      setList(results);
+      setFullList(results);
       setFilteredList(results);
     };
     init();
   }, []);
 
+  useEffect(() => {
+    let tmpList = [...fullList];
+
+    // Filter by search
+    if (searchTerm) {
+      tmpList = tmpList.filter(
+        (item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()) // ignore case
+      );
+    }
+
+    // Sort list
+    tmpList.sort((a, b) => {
+      if (sortOrder === sortAsc) {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+
+    setFilteredList(tmpList);
+  }, [searchTerm, sortOrder, fullList]);
+
+  const toggleSortOrder = () => {
+    if (sortOrder === sortAsc) {
+      setSortOrder(sortDsc);
+    } else {
+      setSortOrder(sortAsc);
+    }
+  };
+
   const handleChangeSearchTerm = (e) => {
     // todo: debounce
     const term = e.target.value;
     setSearchTerm(term);
-    const filtered = list.filter((item) =>
-      item.name.toLowerCase().includes(term.toLowerCase())
-    );
-    setFilteredList(filtered);
   };
 
   return (
@@ -37,15 +66,23 @@ function App() {
       <h1>Appspace - Frontend Technical Challenge</h1>
       <div className="container">
         <h2>Rick And Morty</h2>
-        <input
-          type="text"
-          name="searchTerm"
-          id="searchTerm"
-          placeholder="Search by name..."
-          value={searchTerm}
-          onChange={handleChangeSearchTerm}
-          className="search-box"
-        />
+        <div className="filter-sort">
+          <input
+            type="text"
+            name="searchTerm"
+            id="searchTerm"
+            placeholder="Search by name..."
+            value={searchTerm}
+            onChange={handleChangeSearchTerm}
+            className="search-box"
+          />
+          <input
+            type="button"
+            value={sortOrder}
+            onClick={toggleSortOrder}
+            className="sorting-toggle-btn"
+          />
+        </div>
         <ul className="list">
           {filteredList &&
             filteredList.map((item) => (

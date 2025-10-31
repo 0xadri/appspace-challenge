@@ -5,13 +5,18 @@
 - init repo
 - init README
 - init TASKS_LOG
+- API Fetch
+- List Display
+- List : Dynamic Filtering
+- Basic Styling
 
 ### 🏗️ PROG
 
-- API Fetch
+- List : Sort by title
 
 ### 📋 MUST
 
+- Details: show detailed information about the selected element.
 - Responsive UX: mobile first, tablet & desktop friendly
 - Update README with: correct .env instructions, link to app
 
