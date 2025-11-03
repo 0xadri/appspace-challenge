@@ -31,8 +31,8 @@
 - Use React DevTools Profiler to detect unnecessary renders
 - Use CSS modules or CSS-in-JS for scoping styles.
 - Avoid redundant re-renders with useCallback and useMemo
-- Semantic HTML, use <main>, <section>, <nav>, <header>, <footer>.
+- Semantic HTML, use `<main>, <section>, <nav>, <header>, <footer>`.
 
 ### COULD
 
-- Debounce user input, only nice-to-have since we cache the entire list, w
+- Debounce user input, only nice-to-have since we cache the entire list
