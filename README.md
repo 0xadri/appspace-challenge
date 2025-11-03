@@ -2,7 +2,7 @@
 
 Pitch: Frontend technical challenge for Appspace.
 
-### 🚀 [Try It Live](TODO) 🚀
+### 🚀 [Try It Live](http://appspace-chlg.s3-website.eu-north-1.amazonaws.com/) 🚀
 
 # 🛠️ Tech Stack
 
@@ -54,3 +54,7 @@ Pitch: Frontend technical challenge for Appspace.
 ## Project Mgmt and Potential Improvements
 
 [Tasks Tracker](./TASKS_LOG.md)
+
+## Answers to Bonus Questions
+
+[Answers to Bonus Questions](./SUBMIT.md)
